@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,16 +21,19 @@ public class VeiculoService {
     @Autowired
     private VeiculoRepository veiculoRepository;
 
+    @Cacheable(value = "veiculos", key = "#id")
     public List<Veiculo> getAllVeiculos(){
         return veiculoRepository.findAll();
     }
 
+    @Cacheable(value = "veiculos")
     public Veiculo getVeiculoByPlaca(String placa){
         return veiculoRepository
                 .findByPlaca(placa.toUpperCase())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Veículo não encontrado"));
     }
 
+    @Cacheable(value = "veiculos", key = "#id")
     public Veiculo add(Veiculo veiculo) {
         if (veiculoRepository.findByPlaca(veiculo.getPlaca()).isPresent()){
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Veículo já existe na base de dados");
@@ -36,6 +42,7 @@ public class VeiculoService {
         }
     }
 
+    @CachePut(value = "veiculos", key = "#id")
     public Veiculo update(Veiculo veiculo, Long id){
         if (veiculoRepository.findById(id).isEmpty()){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Veículo não encontrado");
@@ -44,6 +51,7 @@ public class VeiculoService {
         }
     }
 
+    @CacheEvict(value = "veiculos", key = "#id")
     public void delete(Long id) {
         var veiculo = veiculoRepository.findById(id);
         if (veiculo.isPresent()){

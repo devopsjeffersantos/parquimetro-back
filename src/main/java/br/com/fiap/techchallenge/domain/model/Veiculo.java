@@ -3,12 +3,8 @@ package br.com.fiap.techchallenge.domain.model;
 import br.com.fiap.techchallenge.domain.enums.Cor;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.jetbrains.annotations.NotNull;
-
 import java.time.LocalDateTime;
 
 @Data
