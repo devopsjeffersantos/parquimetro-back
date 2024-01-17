@@ -21,12 +21,12 @@ public class VeiculoService {
     @Autowired
     private VeiculoRepository veiculoRepository;
 
-    @Cacheable(value = "veiculos", key = "#id")
+    @Cacheable(value = "veiculos")
     public List<Veiculo> getAllVeiculos(){
         return veiculoRepository.findAll();
     }
 
-    @Cacheable(value = "veiculos")
+    @Cacheable(value = "veiculos", key = "#placa")
     public Veiculo getVeiculoByPlaca(String placa){
         return veiculoRepository
                 .findByPlaca(placa.toUpperCase())
