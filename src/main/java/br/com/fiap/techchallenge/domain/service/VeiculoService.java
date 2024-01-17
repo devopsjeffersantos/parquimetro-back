@@ -33,7 +33,7 @@ public class VeiculoService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Veículo não encontrado"));
     }
 
-    @Cacheable(value = "veiculos", key = "#id")
+
     public Veiculo add(Veiculo veiculo) {
         if (veiculoRepository.findByPlaca(veiculo.getPlaca()).isPresent()){
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Veículo já existe na base de dados");
