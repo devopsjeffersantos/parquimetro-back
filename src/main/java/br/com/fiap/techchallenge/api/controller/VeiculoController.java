@@ -13,8 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/veiculos")
-//@CrossOrigin(origins = "https://floating-wildwood-71882-9c354b66f27a.herokuapp.com")
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "*")
 public class VeiculoController {
 
     @Autowired

@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/api/condutores")
 //@CrossOrigin(origins = "https://floating-wildwood-71882-9c354b66f27a.herokuapp.com")
 
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "*")
 public class CondutorController {
 
     @Autowired
