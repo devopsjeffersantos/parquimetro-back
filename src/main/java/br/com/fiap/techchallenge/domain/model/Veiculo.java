@@ -40,6 +40,9 @@ public class Veiculo {
     @Column(nullable = true, length = 4)
     private String anoModelo;
 
+    @NotNull
+    private String teste;
+
     @Column
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private final LocalDateTime dataCadastro = LocalDateTime.now();
