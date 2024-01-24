@@ -21,12 +21,12 @@ public class VeiculoService {
     @Autowired
     private VeiculoRepository veiculoRepository;
 
-    @Cacheable(value = "veiculos")
+
     public List<Veiculo> getAllVeiculos(){
         return veiculoRepository.findAll();
     }
 
-    @Cacheable(value = "veiculos", key = "#placa")
+
     public Veiculo getVeiculoByPlaca(String placa){
         return veiculoRepository
                 .findByPlaca(placa.toUpperCase())
@@ -42,7 +42,7 @@ public class VeiculoService {
         }
     }
 
-    @CachePut(value = "veiculos", key = "#id")
+
     public Veiculo update(Veiculo veiculo, Long id){
         if (veiculoRepository.findById(id).isEmpty()){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Veículo não encontrado");
@@ -51,7 +51,7 @@ public class VeiculoService {
         }
     }
 
-    @CacheEvict(value = "veiculos", key = "#id")
+
     public void delete(Long id) {
         var veiculo = veiculoRepository.findById(id);
         if (veiculo.isPresent()){
