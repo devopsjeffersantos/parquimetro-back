@@ -1,9 +1,6 @@
 package br.com.fiap.techchallenge.api.controller;
 
-import br.com.fiap.techchallenge.api.model.VeiculoDto;
-import br.com.fiap.techchallenge.domain.enums.Cor;
 import br.com.fiap.techchallenge.domain.model.Condutor;
-import br.com.fiap.techchallenge.domain.model.Veiculo;
 import br.com.fiap.techchallenge.domain.service.CondutorService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +11,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/condutores")
-//@CrossOrigin(origins = "https://floating-wildwood-71882-9c354b66f27a.herokuapp.com")
-
 @CrossOrigin(origins = "*")
 public class CondutorController {
 
@@ -25,6 +20,11 @@ public class CondutorController {
     @GetMapping
     public List<Condutor> getAll() {
         return condutorService.getAll();
+    }
+
+    @GetMapping("/{nomeCompleto}")
+    public List<Condutor> getCondutorByNomeCompleto(@PathVariable String nomeCompleto) {
+        return condutorService.getCondutorByNomeCompleto(nomeCompleto);
     }
 
     @PostMapping
