@@ -1,5 +1,6 @@
 package br.com.fiap.techchallenge.api.model;
 
+
 import org.modelmapper.ModelMapper;
 
 import br.com.fiap.techchallenge.domain.enums.FormaPagamento;
@@ -13,8 +14,9 @@ public class PagamentoDTO {
     private FormaPagamento formaPagamento;
     private int tempoUtilizado;
     private int valorPago;
+    private int tempoId;
 
-     public Pagamento toEntity(){
+    public Pagamento toEntity(){
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(this, Pagamento.class);
     }
